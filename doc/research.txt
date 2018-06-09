@@ -1,0 +1,29 @@
+ 
+# we get 8 bytes of data
+# starting from byte 3, we get the buttons a user is pressing
+# if all bytes are zero, user has released all buttons
+
+# 11 and the thumb top button seem to be special, and get represented in the first byte
+# for some reason they can be pressed at the same time
+# 
+# - thumb top (0x4) and 11 (0x2) = 6
+
+# this makes a total of 8 buttons that a user can press simultaniously
+
+# [6, 0, 4, 22, 7, 9, 44, 21])
+
+
+
+https://openrazer.github.io
+	After installing I tried the following:
+
+	Polychromatic
+		- Could only set color. Seriously.
+	RazerGenie
+		- Compiling errors
+	razerCommander
+		- Crashed when plugging in device
+
+
+
+		

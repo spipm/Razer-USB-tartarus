@@ -1,0 +1,4 @@
+# http://tjjr.fi/sw/python-uinput/
+# https://www.orangecoat.com/how-to/read-and-decode-data-from-your-mouse-using-this-pyusb-hack
+
+
