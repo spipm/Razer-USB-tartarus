@@ -22,3 +22,10 @@ You can actually to more than with the original Razer software! The original sof
 
 You can even program this script to trigger commands when keys are pressed (simoultaniously) in a certain order.
 
+## Le tech
+
+
+[http://tjjr.fi/sw/python-uinput/]
+
+
+[https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h]
