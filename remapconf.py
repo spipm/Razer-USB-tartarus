@@ -1,6 +1,8 @@
 from tartlib.simulate import *
 
+
 remapConfig = {
+
 	"1":	"a",	# remap to letter
 	"2":	"a",
 	"3":	"a",	
@@ -16,16 +18,16 @@ remapConfig = {
 	"13":	"c",
 	"14":	"c",
 	"15":	"c",
-	
-	"1-2-3":	"d", 		# boss mode: map multiple keys
-							# don't use this yet: implementation is harder
 
-	"ttop":		doNewTab, 	# remap to function for pressing multiple keys
-	"tbottom":	doCloseTab,
+	"ttop":		doPressPageUp, 	# remap to function for pressing multiple keys
+	"tbottom":	doPressPageDown,
 
 	"up":		"up",
 	"right":	"right",
 	"down":		"down",
 	"left":		"left",
+
+	"1-2-3":	"d" 		# boss mode: map multiple keys
+							# don't use this yet: implementation is harder
 }
 
