@@ -174,7 +174,7 @@ mapping_keys = {
   "_": [uinput.KEY_LEFTSHIFT, uinput.KEY_MINUS],
   "=": uinput.KEY_EQUAL,
   ";": uinput.KEY_SEMICOLON,
-  ":": [uinput.KEY_LEFTSHIFT, uinput.KEY_SEMICOLON].
+  ":": [uinput.KEY_LEFTSHIFT, uinput.KEY_SEMICOLON],
   "!": [uinput.KEY_LEFTSHIFT, uinput.KEY_1]
 }
 
