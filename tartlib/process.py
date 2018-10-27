@@ -43,12 +43,19 @@ def processData(data):
     mapTo = remapConfig[pressed_keys]
 
     if isinstance(mapTo, basestring):
+
       debugMessage( "Pressing %s" % mapTo )
       doClickKey(mapping_keys[mapTo])
 
     else:
-      debugMessage( "Executing %s" % mapTo.__name__ )
-      mapTo()
+
+      if len(mapTo) == 1:
+        debugMessage( "Executing %s" % mapTo[0].__name__ )
+        mapTo[0]()
+
+      else:
+        debugMessage( "Executing %s with args" % mapTo[0].__name__ )
+        mapTo[0](mapTo[1])
 
   else:
     debugMessage( "Could not find key combination in mapping" )

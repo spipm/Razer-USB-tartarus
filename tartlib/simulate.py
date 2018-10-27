@@ -3,7 +3,11 @@ import uinput
 
 # init device
 device = uinput.Device([
+  uinput.KEY_ENTER,
+  uinput.KEY_SPACE,
+
   uinput.KEY_LEFTCTRL,
+  uinput.KEY_LEFTSHIFT,
   uinput.KEY_LEFTALT,
   uinput.KEY_TAB,
 
@@ -39,10 +43,27 @@ device = uinput.Device([
   uinput.KEY_Y,
   uinput.KEY_Z,
 
+  uinput.KEY_0,
+  uinput.KEY_1,
+  uinput.KEY_2,
+  uinput.KEY_3,
+  uinput.KEY_4,
+  uinput.KEY_5,
+  uinput.KEY_6,
+  uinput.KEY_7,
+  uinput.KEY_8,
+  uinput.KEY_9,
+
   uinput.KEY_RIGHT,
   uinput.KEY_LEFT,
   uinput.KEY_UP,
-  uinput.KEY_DOWN
+  uinput.KEY_DOWN,
+
+  uinput.KEY_APOSTROPHE,
+  uinput.KEY_COMMA,
+  uinput.KEY_MINUS,
+  uinput.KEY_EQUAL,
+  uinput.KEY_SEMICOLON
 
   ])
 
@@ -57,6 +78,8 @@ KEY_COMBO_TAB_NEW = [uinput.KEY_LEFTCTRL,uinput.KEY_T]
 KEY_COMBO_TAB_CLOSE = [uinput.KEY_LEFTCTRL,uinput.KEY_W]
 
 KEY_COMBO_WINDOW_CLOSE = [uinput.KEY_LEFTALT,uinput.KEY_TAB]
+
+KEY_COMBO_UNICODE = [uinput.KEY_LEFTCTRL, uinput.KEY_LEFTSHIFT, uinput.KEY_U]
 
 # how to we call the thumb buttons?
 THUMB_TOP_BUTTON_NAME = "ttop"
@@ -124,11 +147,34 @@ mapping_keys = {
   "y": uinput.KEY_Y,
   "z": uinput.KEY_Z,
 
+  "0": uinput.KEY_0,
+  "1": uinput.KEY_1,
+  "2": uinput.KEY_2,
+  "3": uinput.KEY_3,
+  "4": uinput.KEY_4,
+  "5": uinput.KEY_5,
+  "6": uinput.KEY_6,
+  "7": uinput.KEY_7,
+  "8": uinput.KEY_8,
+  "9": uinput.KEY_9,
+
   "right": uinput.KEY_RIGHT,
   "left": uinput.KEY_LEFT,
   "up": uinput.KEY_UP,
-  "down": uinput.KEY_DOWN
+  "down": uinput.KEY_DOWN,
 
+  "&": [uinput.KEY_LEFTSHIFT, uinput.KEY_7],
+  # Enter required depends on keyboard settings
+  "\"": [uinput.KEY_LEFTSHIFT, uinput.KEY_APOSTROPHE],
+  "'": [uinput.KEY_APOSTROPHE],
+  ",": uinput.KEY_COMMA,
+  "(": [uinput.KEY_LEFTSHIFT, uinput.KEY_9],
+  ")": [uinput.KEY_LEFTSHIFT, uinput.KEY_0],
+  "-": uinput.KEY_MINUS,
+  "_": [uinput.KEY_LEFTSHIFT, uinput.KEY_MINUS],
+  "=": uinput.KEY_EQUAL,
+  ";": uinput.KEY_SEMICOLON,
+  ":": [uinput.KEY_LEFTSHIFT, uinput.KEY_SEMICOLON]
 }
 
 # remapping functions
@@ -168,5 +214,20 @@ def doPressPageUp():
 def doClickKey(key):
   device.emit_click(key)
 
+def press_unicode(uni_character):
+  # ctrl, shift, u
+  device.emit_combo(KEY_COMBO_UNICODE)
+  # hex characters
+  uni_codes_hex = [i for i in hex(ord(uni_character))[2:]]
+  for norm_char in uni_codes_hex:
+    device.emit_click(mapping_keys[norm_char])
+  # enter
+  device.emit_click(uinput.KEY_ENTER)
 
+def combo_space(combo, press_space = True):
+  device.emit_combo(combo)
+  if press_space:
+    device.emit_click(uinput.KEY_SPACE)
 
+def combo_norm(combo):
+  combo_space(combo, press_space = False)

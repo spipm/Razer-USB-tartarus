@@ -1,33 +1,34 @@
+# -*- coding: utf-8 -*-
 from tartlib.simulate import *
 
 
 remapConfig = {
 
-	"1":	"a",	# remap to letter
-	"2":	"a",
-	"3":	"a",	
-	"4":	"a",
-	"5":	"a",
-	"6":	"b",
-	"7":	"b",
-	"8":	"b",
-	"9":	"b",
-	"10":	"b",
-	"11":	"c",
-	"12":	"c",
-	"13":	"c",
-	"14":	"c",
-	"15":	"c",
+	# remap to letter
+	"1":	[combo_norm, mapping_keys["&"]],	
+	"2":	[press_unicode, u"é"],
+	"3":	[combo_space, mapping_keys["\""]],	
+	"4":	[combo_space, mapping_keys["'"]],
+	"5":	",",
+	"6":	[combo_norm, mapping_keys["("]],
+	"7":	"-",
+	"8":	[press_unicode, u"è"],
+	"9":	[combo_norm, mapping_keys["_"]],
+	"10":	";",
+	"11":	[press_unicode, u"ç"],
+	"12":	[press_unicode, u"à"],
+	"13":	[combo_norm, mapping_keys[")"]],
+	"14":	"=",
+	"15":	[combo_norm, mapping_keys[":"]],
 
-	"ttop":		doPressPageUp, 	# remap to function for pressing multiple keys
-	"tbottom":	doPressPageDown,
+	"ttop":		[doPressPageUp], 	# remap to function for pressing multiple keys
+	"tbottom":	[doPressPageDown],
 
-	"up":		"up",
-	"right":	"right",
-	"down":		"down",
-	"left":		"left",
+	"up":		"a",
+	"right":	"up",
+	"down":		"e",
+	"left":		"down",
 
 	"1-2-3":	"d" 		# boss mode: map multiple keys
 							# don't use this yet: implementation is harder
 }
-
