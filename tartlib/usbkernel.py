@@ -25,3 +25,4 @@ def releaseDevice(dev, interface=0):
 
   usb.util.release_interface(dev, interface)
   dev.attach_kernel_driver(interface)
+

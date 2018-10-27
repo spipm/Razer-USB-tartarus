@@ -1,11 +1,13 @@
 import uinput
 
-from tartlib.mapping import *
 from tartlib.debug import *
 from tartlib.simulate import *
 
+from remapconf import *
+
+
 RELEASE_COMBO = [0, 0, 0, 0, 0, 0, 0, 0]
-EXIT_COMMAND = ["12","13","14","15","TTOP"]
+EXIT_COMMAND = "12-13-14-15-ttop"
 
 
 
@@ -27,55 +29,30 @@ def processData(data):
     pressed_special_keys = mapping_special[data[0]]
     pressed_keys.append(pressed_special_keys)
 
-  debugMessage( "User is pressing keys: %s" % ','.join(pressed_keys) )
+  pressed_keys = '-'.join(pressed_keys)
+
+  debugMessage( "User is pressing keys: %s" %  pressed_keys)
 
   # exit command
   if pressed_keys == EXIT_COMMAND:
     debugMessage( "Exit command.." )
     return -1
 
-  if pressed_keys == ["3"]:
-    debugMessage( "Performing cut.." )
-    doCutzxcv()
+  if pressed_keys in remapConfig:
+    debugMessage( "Found key" )
+    mapTo = remapConfig[pressed_keys]
 
-  if pressed_keys == ["4"]:
-    debugMessage( "Performing copy.." )
-    doCopy()
+    if isinstance(mapTo, basestring):
+      debugMessage( "Pressing %s" % mapTo )
+      doClickKey(mapping_keys[mapTo])
 
-  if pressed_keys == ["5"]:
-    debugMessage( "Performing paste.." )
-    doPaste()
+    else:
+      debugMessage( "Executing %s" % mapTo.__name__ )
+      mapTo()
 
-  if pressed_keys == ["TTOP"]:
-    debugMessage( "Creating new tab.." )
-    doNewTab()
-
-  if pressed_keys == ["TBOTTOM"]:
-    debugMessage( "Closing tab.." )
-    doCloseTab()
-
-  if pressed_keys == ["10"]:
-    debugMessage( "Changing tab.." )
-    doChangeTab()
-
-  if pressed_keys == ["9"]:
-    debugMessage( "Changing window.." )
-    doChangeWindow()
-
-  if pressed_keys == ["UP"]:
-    debugMessage( "Scrolling to top.." )
-    doPressHome()
-
-  if pressed_keys == ["DOWN"]:
-    debugMessage( "Scrolling to bottom.." )
-    doPressEnd()
-
-  if pressed_keys == ["LEFT"]:
-    debugMessage( "Page down.." )
-    doPressPageDown()
-
-  if pressed_keys == ["RIGHT"]:
-    debugMessage( "Page up.." )
-    doPressPageUp()
+  else:
+    debugMessage( "Could not find key combination in mapping" )
+    debugMessage( "Combination was:" )
+    debugMessage( pressed_keys )
 
   old_presses = pressed_keys
