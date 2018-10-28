@@ -1,4 +1,3 @@
 # http://tjjr.fi/sw/python-uinput/
 # https://www.orangecoat.com/how-to/read-and-decode-data-from-your-mouse-using-this-pyusb-hack
-
-
+# https://github.com/torvalds/linux/blob/master/include/uapi/linux/input-event-codes.h

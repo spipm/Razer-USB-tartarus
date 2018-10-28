@@ -1,1 +1,0 @@
-- run usbreset.c on your device if it starts responding weird
