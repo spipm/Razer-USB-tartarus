@@ -29,4 +29,8 @@ remap_config = {
 	"down":		"e",
 	"left":		"down",
 
+
+	# "14-11":	"copy", # special key combination example
+	# "15-11": 	"paste" # note that this is the combination of 11 and then 15
+
 }
