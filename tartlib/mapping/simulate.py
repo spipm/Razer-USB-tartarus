@@ -6,6 +6,7 @@ KEY_COMBO_UNICODE = [uinput.KEY_LEFTCTRL, uinput.KEY_LEFTSHIFT, uinput.KEY_U]
 SIMULATE_KEYS = [
   uinput.KEY_ENTER,
   uinput.KEY_SPACE,
+  uinput.KEY_FN,
 
   uinput.KEY_LEFTCTRL,
   uinput.KEY_LEFTSHIFT,

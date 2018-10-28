@@ -5,31 +5,28 @@
 remap_config = {
 
 	#FROM   #TO
-	"1":	"strange c",
-	"2":	"q",
-	"3":	"w",	
-	"4":	"e",
-	"5":	"(",
-	"6":	")",
-	"7":	"a",
-	"8":	"s",
-	"9":	"d",
-	"10":	"down",
-	"11":	"no meaning example", # no meaning - special key example
-	"12":	"french e",
-	"13":	"kick_ass_macro",
-	"14":	"=",
-	"15":	"\"",
+	"1":	"esperluette",
+	"2":	"e aigu",
+	"3":	"petit deux",	
+	"4":	"apostrophe",
+	"5":	"virgule",
+	"6":	"parent gauche",
+	"7":	"moins",
+	"8":	"e grave",
+	"9":	"souligne",
+	"10":	"point virgule",
+	"11":	"cedille",
+	"12":	"a accent",
+	"13":	"parent droite",
+	"14":	"egal",
+	"15":	"deux points",
 
-	"ttop":		"pageup",
-	"tbottom":	"pagedown",
+	"ttop":		"exclamation",
+	"tbottom":	"u accent",
 
 	"up":		"a",
 	"right":	"up",
 	"down":		"e",
 	"left":		"down",
 
-	"14-11":	"copy", # special key combination example
-	"15-11":	"paste" # note that this is the combination of 11 and then 15
-						
 }

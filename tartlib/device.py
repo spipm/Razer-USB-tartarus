@@ -5,6 +5,7 @@ from tartlib.debug import *
 from tartlib.mapping.simulate import *
 from tartlib.mapping.remap import *
 from tartlib.mapping.output import *
+from tartlib.mapping.hexkeys import *
 
 
 class DeviceSimulator():
@@ -58,7 +59,7 @@ class DeviceSimulator():
     # hex characters
     uni_codes_hex = [i for i in hex(ord(uni_character))[2:]]
     for norm_char in uni_codes_hex:
-      self.device.emit_click(mapping_meaning[norm_char].args)
+      self.device.emit_click(mapping_hexkeys[norm_char])
 
     # enter
     self.device.emit_click(uinput.KEY_ENTER)
