@@ -1,65 +1,58 @@
-import uinput
+
+from tartlib.mapping.hardware import *
+from tartlib.mapping.state import *
 
 from tartlib.debug import *
-from tartlib.simulate import *
-
-from remapconf import *
-
-
-RELEASE_COMBO = [0, 0, 0, 0, 0, 0, 0, 0]
-EXIT_COMMAND = "12-13-14-15-ttop"
+from tartlib.device import DeviceSimulator
 
 
 
-old_presses = None
+class TartDataProcessor():
+  """ Processor for data from Razer Tartarus """
+
+  def __init__(self):
+
+    self.old_presses = ""
+
+    self.RELEASE_COMBO = HARDWARE_MAPPING_RELEASE_COMBO
+    self.EXIT_COMMAND = HARDWARE_MAPPING_EXIT_COMMAND
+
+    self.simulator = DeviceSimulator()
 
 
-def processData(data):
-  global old_presses
+  def processData(self, data):
+    ''' Process raw data from Tartarus '''
 
-  data = data.tolist()
-  
-  if data == RELEASE_COMBO:
-    debugMessage( "User released all buttons" )
-    return
+    data = data.tolist()
+    
+    if data == self.RELEASE_COMBO:
+      debugMessage( "User released all buttons" )
+      return 0
 
-  pressed_keys = [mapping_normal[i] for i in data[2:] if i != 0]
+    pressed_keys = [hardware_mapping_normal[i] for i in data[2:] if i != 0]
 
-  if data[0] != 0:
-    pressed_special_keys = mapping_special[data[0]]
-    pressed_keys.append(pressed_special_keys)
+    if data[0] != 0:
+      pressed_special_keys = hardware_mapping_special[data[0]]
+      pressed_keys.append(pressed_special_keys)
 
-  pressed_keys = '-'.join(pressed_keys)
+    pressed_keys = '-'.join(pressed_keys)
+    debugMessage( "User is pressing keys: %s" %  pressed_keys)
 
-  debugMessage( "User is pressing keys: %s" %  pressed_keys)
+    # check for exit command
+    if pressed_keys == self.EXIT_COMMAND:
+      debugMessage( "Exit command.." )
+      return -1
 
-  # exit command
-  if pressed_keys == EXIT_COMMAND:
-    debugMessage( "Exit command.." )
-    return -1
+    # handle state change here?
+    state = "%s=>%s" % (self.old_presses, pressed_keys)
+    if state in state_mapping:
+      debugMessage("Found state in mapping :) state:")
+      debugMessage( state )
 
-  if pressed_keys in remapConfig:
-    debugMessage( "Found key" )
-    mapTo = remapConfig[pressed_keys]
+    # handle key presses
+    self.simulator.simulate(pressed_keys)
 
-    if isinstance(mapTo, basestring):
+    # save old key presses
+    self.old_presses = pressed_keys
 
-      debugMessage( "Pressing %s" % mapTo )
-      doClickKey(mapping_keys[mapTo])
-
-    else:
-
-      if len(mapTo) == 1:
-        debugMessage( "Executing %s" % mapTo[0].__name__ )
-        mapTo[0]()
-
-      else:
-        debugMessage( "Executing %s with args" % mapTo[0].__name__ )
-        mapTo[0](mapTo[1])
-
-  else:
-    debugMessage( "Could not find key combination in mapping" )
-    debugMessage( "Combination was:" )
-    debugMessage( pressed_keys )
-
-  old_presses = pressed_keys
+    return 0
