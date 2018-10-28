@@ -6,7 +6,7 @@ OpenRazer tools didn't work like I wanted to so I made my own script to interact
 ## Usage
 * This should about fix deps:
 `pip install python-uinput pyusb`
-* Change remapconf.py for configuring certain keys
+* Change configuration, see below
 * Plug in Tartarus, run script:
 `sudo python run.py`
 * If you're done, press 12-13-14-15-[top thumb button] at the same time to quit
